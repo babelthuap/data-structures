@@ -1,0 +1,9 @@
+{
+  "name": "data-structures",
+  "version": "1.0.0",
+  "author": "Nicholas Neumann-Chun",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.5.1"
+  }
+}
