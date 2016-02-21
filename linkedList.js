@@ -2,7 +2,7 @@
 
 class Node {
   constructor(value, next) {
-    this.data = value;
+    this.value = value;
     this.next = next || null;
   }
 
@@ -24,11 +24,21 @@ class Node {
     if (!index) {
       index = 0;
     }
-    console.log(`${index}: ${this.data}`);
+    console.log(`${index}: ${this.value}`);
     if (this.next) {
       this.next.print(index + 1);
     }
   }
+
+  *[Symbol.iterator]() {
+    let current = this;
+    yield this.value;
+    while (current.next) {
+      yield current.next.value;
+      current = current.next;
+    }
+  }
+
 }
 
 
@@ -36,3 +46,5 @@ class Node {
 let list = Node.fromArray(['a', 'b', 'c']);
 console.log(list);
 list.print();
+
+console.log(...list);
