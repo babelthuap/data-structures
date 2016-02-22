@@ -95,30 +95,26 @@ class LinkedList {
   }
 
   // insert a value so that it *becomes* the node at the specified index
-  //   - use 0-based indexing
-  //   - indicies out of range are clamped
-  //   - if no index is supplied, simply does a pushHead
   insert(value, index) {
-    if (index <= 0 || !index) {
+    if (index === this.size) {
+      return this.pushTail(value);
+    }
+    if (index === 0) {
       return this.pushHead(value);
     }
-    if (index >= this.size) {
-      return this.pushTail(value);
+    if (this._outOfBounds(index)) {
+      return undefined;
     }
     this._find(index - 1).insert(value);
     return ++this.size;
   }
 
-  // 'remove' does *not* clamp indicies
   remove(index) {
-    if (this._outOfBounds(index)) {
-      return undefined;
-    }
     if (index === 0) {
       return this.popHead();
     }
-    if (index === this.size - 1) {
-      return this.popTail();
+    if (this._outOfBounds(index)) {
+      return undefined;
     }
     let predecessor = this._find(index - 1);
     let nodeToRemove = predecessor.next;
@@ -170,7 +166,7 @@ console.log('get 2:', list.get(2));
 console.log('get 5:', list.get(5));
 console.log('get 6:', list.get(6));
 
-console.log('\nremove index 4...:');
+console.log('\nremove index 4...');
 list.remove(4);
 console.log(...list);
 console.log('size:', list.size);
