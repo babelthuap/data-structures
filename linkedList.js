@@ -1,11 +1,13 @@
 'use strict';
 
 class Node {
+  // the last node in a linked list has a 'null' successor
   constructor(value, next) {
     this.value = value;
     this.next = next || null;
   }
 
+  // create a linked list from an array
   static fromArray(arr) {
     if (arr.length === 0) {
       return null;
@@ -20,6 +22,7 @@ class Node {
     return head;
   }
 
+  // generate a representation of the linked list on stdout
   print(index) {
     if (!index) {
       index = 0;
@@ -30,6 +33,7 @@ class Node {
     }
   }
 
+  // make my Node class iterable
   *[Symbol.iterator]() {
     let current = this;
     yield this.value;
@@ -38,7 +42,6 @@ class Node {
       current = current.next;
     }
   }
-
 }
 
 
@@ -46,5 +49,4 @@ class Node {
 let list = Node.fromArray(['a', 'b', 'c']);
 console.log(list);
 list.print();
-
 console.log(...list);
