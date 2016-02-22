@@ -6,8 +6,7 @@ class Node {
     this.next = next || null;
   }
 
-  // insert a node after the current node
-  insert(value) {
+  insertAfter(value) {
     let newNode = new Node(value, this.next);
     this.next = newNode;
   }
@@ -15,8 +14,8 @@ class Node {
 
 
 class LinkedList {
-  // create an empty linked list
   constructor(arr) {
+    // create an empty linked list
     this.head = null;
     this.size = 0;
 
@@ -49,6 +48,11 @@ class LinkedList {
     return foundNode ? foundNode.value : undefined;
   }
 
+  set(value, index) {
+    let foundNode = this._find(index);
+    return foundNode ? (foundNode.value = value) : undefined;
+  }
+
   includes(value) {
     if (this.size === 0) {
       return false;
@@ -58,6 +62,11 @@ class LinkedList {
       finger = finger.next;
     }
     return !!finger;
+  }
+
+  clear() {
+    this.head = null;
+    this.size = 0;
   }
 
   pushHead(value) {
@@ -116,7 +125,7 @@ class LinkedList {
     if (this._outOfBounds(index)) {
       return undefined;
     }
-    this._find(index - 1).insert(value);
+    this._find(index - 1).insertAfter(value);
     return ++this.size;
   }
 
@@ -179,4 +188,7 @@ class LinkedList {
 }
 
 
-module.exports = LinkedList;
+module.exports = {
+  Node: Node,
+  LinkedList: LinkedList,
+};
