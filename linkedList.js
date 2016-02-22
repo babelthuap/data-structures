@@ -49,6 +49,17 @@ class LinkedList {
     return foundNode ? foundNode.value : undefined;
   }
 
+  includes(value) {
+    if (this.size === 0) {
+      return false;
+    }
+    let finger = this.head;
+    while (finger && finger.value !== value) {
+      finger = finger.next;
+    }
+    return !!finger;
+  }
+
   pushHead(value) {
     this.head = new Node(value, this.head);
     return ++this.size;
@@ -66,11 +77,11 @@ class LinkedList {
 
   pushTail(value) {
     let newTail = new Node(value);
-    if (this.head) {
+    if (this.size === 0) {
+      this.head = newTail;
+    } else {
       let tail = this._find(this.size - 1);
       tail.next = newTail;
-    } else {
-      this.head = newTail;
     }
     return ++this.size;
   }
@@ -136,6 +147,10 @@ class LinkedList {
     return list;
   }
 
+  toArray() {
+    return [...this];
+  }
+
   // make the LinkedList class iterable
   *[Symbol.iterator]() {
     let current = this.head;
@@ -153,12 +168,19 @@ module.exports = LinkedList;
 // TESTING
 // let list = LinkedList.fromArray([0, 1, 2, 3, 4]);
 let list = new LinkedList([0, 1, 2, 3, 4]);
-console.log(...list);
+console.log(list.toArray());
 console.log('size:', list.size);
+
+console.log('\nincludes 0:', list.includes(0));
+console.log('includes 1:', list.includes(1));
+console.log('includes 5:', list.includes(5));
+console.log("includes 'a':", list.includes('a'));
+
 console.log("\ninsert 'a' at index 2...");
 list.insert('a', 2);
-console.log(...list);
+console.log(list.toArray());
 console.log('size:', list.size);
+console.log("includes 'a':", list.includes('a'));
 
 console.log('\nget -1:', list.get(-1));
 console.log('get 0:', list.get(0));
@@ -168,7 +190,7 @@ console.log('get 6:', list.get(6));
 
 console.log('\nremove index 4...');
 list.remove(4);
-console.log(...list);
+console.log(list.toArray());
 console.log('size:', list.size);
 
 console.log('\npopping from tail...');
@@ -176,5 +198,5 @@ while (list.size > 0) {
   console.log(list.popTail());
 }
 console.log(list.popTail());
-console.log(...list);
+console.log(list.toArray());
 console.log('size:', list.size);
