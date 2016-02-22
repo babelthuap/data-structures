@@ -134,6 +134,23 @@ class LinkedList {
     return nodeToRemove.value;
   }
 
+  // 'reverse' mutates the list
+  reverse() {
+    if (this.size <= 1) {
+      return this;
+    }
+    let previous = null;
+    let current = this.head;
+    while (current) {
+      let next = current.next;
+      current.next = previous; // switch pointers
+      previous = current;
+      current = next;
+    }
+    this.head = previous;
+    return this;
+  }
+
   // create a linked list from an array
   static fromArray(arr) {
     if (!Array.isArray(arr)) {
@@ -163,40 +180,3 @@ class LinkedList {
 
 
 module.exports = LinkedList;
-
-
-// TESTING
-// let list = LinkedList.fromArray([0, 1, 2, 3, 4]);
-let list = new LinkedList([0, 1, 2, 3, 4]);
-console.log(list.toArray());
-console.log('size:', list.size);
-
-console.log('\nincludes 0:', list.includes(0));
-console.log('includes 1:', list.includes(1));
-console.log('includes 5:', list.includes(5));
-console.log("includes 'a':", list.includes('a'));
-
-console.log("\ninsert 'a' at index 2...");
-list.insert('a', 2);
-console.log(list.toArray());
-console.log('size:', list.size);
-console.log("includes 'a':", list.includes('a'));
-
-console.log('\nget -1:', list.get(-1));
-console.log('get 0:', list.get(0));
-console.log('get 2:', list.get(2));
-console.log('get 5:', list.get(5));
-console.log('get 6:', list.get(6));
-
-console.log('\nremove index 4...');
-list.remove(4);
-console.log(list.toArray());
-console.log('size:', list.size);
-
-console.log('\npopping from tail...');
-while (list.size > 0) {
-  console.log(list.popTail());
-}
-console.log(list.popTail());
-console.log(list.toArray());
-console.log('size:', list.size);
