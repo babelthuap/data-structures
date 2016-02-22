@@ -140,12 +140,12 @@ class LinkedList {
       return this;
     }
     let previous = null;
-    let current = this.head;
-    while (current) {
-      let next = current.next;
-      current.next = previous; // switch pointers
-      previous = current;
-      current = next;
+    let finger = this.head;
+    while (finger) {
+      let next = finger.next;
+      finger.next = previous; // switch pointers
+      previous = finger;
+      finger = next;
     }
     this.head = previous;
     return this;
@@ -170,10 +170,10 @@ class LinkedList {
 
   // make the LinkedList class iterable
   *[Symbol.iterator]() {
-    let current = this.head;
-    while (current) {
-      yield current.value;
-      current = current.next;
+    let finger = this.head;
+    while (finger) {
+      yield finger.value;
+      finger = finger.next;
     }
   }
 }
