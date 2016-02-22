@@ -1,10 +1,10 @@
 'use strict';
 
 class Node {
-  // the last node in a linked list has a 'null' successor
+  // the last node in a linked list has an undefined successor
   constructor(value, next) {
     this.value = value;
-    this.next = next || null;
+    this.next = next;
   }
 
   // create a linked list from an array
@@ -22,7 +22,7 @@ class Node {
     return head;
   }
 
-  // generate a representation of the linked list on stdout
+  // print a representation of the linked list to stdout
   print(index) {
     if (!index) {
       index = 0;
@@ -36,9 +36,8 @@ class Node {
   // make my Node class iterable
   *[Symbol.iterator]() {
     let current = this;
-    yield this.value;
-    while (current.next) {
-      yield current.next.value;
+    while (current) {
+      yield current.value;
       current = current.next;
     }
   }
