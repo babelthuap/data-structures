@@ -39,7 +39,7 @@ class DoublyLinkedList extends LinkedList {
       let list = DoublyLinkedList.fromArray(arr);
       this.head = list.head;
       this.tail = list.tail;
-      this.size = list.size;
+      this.length = list.length;
     }
   }
 
@@ -49,14 +49,14 @@ class DoublyLinkedList extends LinkedList {
       return undefined;
     }
     let finger;
-    if (index < this.size / 2) {
+    if (index < this.length / 2) {
       finger = this.head;
       for (let i = 0; i < index; ++i) {
         finger = finger.next;
       }
     } else {
       finger = this.tail;
-      for (let i = this.size - 1; i > index; --i) {
+      for (let i = this.length - 1; i > index; --i) {
         finger = finger.previous;
       }
     }
@@ -66,49 +66,49 @@ class DoublyLinkedList extends LinkedList {
   clear() {
     this.head = null;
     this.tail = null;
-    this.size = 0;
+    this.length = 0;
   }
 
   pushHead(value) {
-    if (this.size === 0) {
+    if (this.length === 0) {
       this.head = new DoublyLinkedNode(value);
       this.tail = this.head;
     } else {
       let newHead = this.head.insertBefore(value);
       this.head = newHead;
     }
-    return ++this.size;
+    return ++this.length;
   }
 
   popHead() {
-    if (this.size === 0) {
+    if (this.length === 0) {
       return undefined;
     }
     let oldHead = this.head;
     this.head = this.head.next;
     this.head.previous = null;
-    --this.size;
+    --this.length;
     return oldHead.value;
   }
 
   pushTail(value) {
-    if (this.size === 0) {
+    if (this.length === 0) {
       return this.pushHead(value);
     } else {
       let newTail = this.tail.insertAfter(value);
       this.tail = newTail;
     }
-    return ++this.size;
+    return ++this.length;
   }
 
   popTail() {
-    if (this.size === 0) {
+    if (this.length === 0) {
       return undefined;
     }
     let oldTail = this.tail;
     this.tail = this.tail.previous;
     this.tail.next = null;
-    --this.size;
+    --this.length;
     return oldTail.value;
   }
 
@@ -127,13 +127,13 @@ class DoublyLinkedList extends LinkedList {
     } else {
       this.tail = node.previous; // node was tail
     }
-    --this.size;
+    --this.length;
     return node.value;
   }
 
   // 'reverse' mutates the list
   reverse() {
-    if (this.size <= 1) {
+    if (this.length <= 1) {
       return this;
     }
     // swap pairs of node values rather than changing node pointers
@@ -145,7 +145,7 @@ class DoublyLinkedList extends LinkedList {
     }
     let leftNode = this.head;
     let rightNode = this.tail;
-    for (let i = 0; i < Math.floor(this.size / 2); i++) {
+    for (let i = 0; i < Math.floor(this.length / 2); i++) {
       swap(leftNode, rightNode);
       leftNode = leftNode.next;
       rightNode = rightNode.previous;

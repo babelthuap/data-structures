@@ -11,11 +11,11 @@ describe('DoublyLinkedList', () => {
       let list = new DoublyLinkedList();
       expect(list.head).to.be(null);
       expect(list.tail).to.be(null);
-      expect(list.size).to.equal(0);
+      expect(list.length).to.equal(0);
       list = new DoublyLinkedList([]); // empty array
       expect(list.head).to.be(null);
       expect(list.tail).to.be(null);
-      expect(list.size).to.equal(0);
+      expect(list.length).to.equal(0);
     });
     it('should create a list when passed a nonempty array', () => {
       let list = new DoublyLinkedList([1]);
@@ -25,7 +25,7 @@ describe('DoublyLinkedList', () => {
       expect(list.tail.value).to.equal(1);
       expect(list.tail.previous).to.be(null);
       expect(list.tail.next).to.be(null);
-      expect(list.size).to.equal(1);
+      expect(list.length).to.equal(1);
       list = new DoublyLinkedList(['z', 42]);
       // correct head
       expect(list.head.value).to.equal('z');
@@ -39,8 +39,8 @@ describe('DoublyLinkedList', () => {
       expect(list.tail.next).to.be(null);
       expect(list.tail.previous.value).to.equal('z');
       expect(list.tail.previous.previous).to.be(null);
-      // correct size
-      expect(list.size).to.equal(2);
+      // correct length
+      expect(list.length).to.equal(2);
     });
   });
 
@@ -135,11 +135,11 @@ describe('DoublyLinkedList', () => {
       let list = new DoublyLinkedList(['a', 'b', 'c']);
       expect(list.head).to.be.ok();
       expect(list.tail).to.be.ok();
-      expect(list.size).to.equal(3);
+      expect(list.length).to.equal(3);
       list.clear();
       expect(list.head).to.be(null);
       expect(list.tail).to.be(null);
-      expect(list.size).to.equal(0);
+      expect(list.length).to.equal(0);
     });
   });
 
@@ -187,7 +187,7 @@ describe('DoublyLinkedList', () => {
     it('should insert a value so that it becomes the node at the specified index', () => {
       let list = new DoublyLinkedList();
       list.insert('head', 0);
-      list.insert('tail', list.size);
+      list.insert('tail', list.length);
       list.insert('middleA', 1);
       list.insert('middleB', 1);
       expect(list.toArray()).to.eql(['head', 'middleB', 'middleA', 'tail']);
@@ -212,7 +212,7 @@ describe('DoublyLinkedList', () => {
       list.reverse();
       expect(list.head).to.be(null);
       expect(list.tail).to.be(null);
-      expect(list.size).to.equal(0);
+      expect(list.length).to.equal(0);
     });
     it('should reverse a list with a nonzero, even number of elements', () => {
       let list = new DoublyLinkedList([0, 1, 2, 3]);

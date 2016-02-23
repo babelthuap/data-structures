@@ -10,22 +10,22 @@ describe('LinkedList', () => {
     it('should create an empty list when passed no arguments or an empty array', () => {
       let list = new LinkedList();
       expect(list.head).to.be(null);
-      expect(list.size).to.equal(0);
+      expect(list.length).to.equal(0);
       list = new LinkedList([]); // empty array
       expect(list.head).to.be(null);
-      expect(list.size).to.equal(0);
+      expect(list.length).to.equal(0);
     });
     it('should create a list when passed a nonempty array', () => {
       let list = new LinkedList([1]);
       expect(list.head.value).to.equal(1);
       expect(list.head.next).to.be(null);
-      expect(list.size).to.equal(1);
+      expect(list.length).to.equal(1);
       list = new LinkedList(['z', 42]);
       expect(list.head.value).to.equal('z');
       expect(list.head.next).to.be.ok();
       expect(list.head.next.value).to.equal(42);
       expect(list.head.next.next).to.be(null);
-      expect(list.size).to.equal(2);
+      expect(list.length).to.equal(2);
     });
   });
 
@@ -119,10 +119,10 @@ describe('LinkedList', () => {
     it('should reset the list to be empty', () => {
       let list = new LinkedList(['a', 'b', 'c']);
       expect(list.head).to.be.ok();
-      expect(list.size).to.equal(3);
+      expect(list.length).to.equal(3);
       list.clear();
       expect(list.head).to.be(null);
-      expect(list.size).to.equal(0);
+      expect(list.length).to.equal(0);
     });
   });
 
@@ -170,7 +170,7 @@ describe('LinkedList', () => {
     it('should insert a value so that it becomes the node at the specified index', () => {
       let list = new LinkedList();
       list.insert('head', 0);
-      list.insert('tail', list.size);
+      list.insert('tail', list.length);
       list.insert('middleA', 1);
       list.insert('middleB', 1);
       expect(list.toArray()).to.eql(['head', 'middleB', 'middleA', 'tail']);
@@ -194,7 +194,7 @@ describe('LinkedList', () => {
       let list = new LinkedList();
       list.reverse();
       expect(list.head).to.be(null);
-      expect(list.size).to.equal(0);
+      expect(list.length).to.equal(0);
     });
     it('should reverse a list with a nonzero, even number of elements', () => {
       let list = new LinkedList([0, 1, 2, 3]);

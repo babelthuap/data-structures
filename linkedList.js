@@ -18,17 +18,17 @@ class LinkedList {
   constructor(arr) {
     // create an empty linked list
     this.head = null;
-    this.size = 0;
+    this.length = 0;
 
     if (Array.isArray(arr)) {
       let list = LinkedList.fromArray(arr);
       this.head = list.head;
-      this.size = list.size;
+      this.length = list.length;
     }
   }
 
   equals(otherList) {
-    if (this.size !== otherList.size) {
+    if (this.length !== otherList.length) {
       return false;
     }
     let thisFinger = this.head;
@@ -44,7 +44,7 @@ class LinkedList {
   }
 
   _outOfBounds(index) {
-    return index < 0 || index >= this.size || index === undefined;
+    return index < 0 || index >= this.length || index === undefined;
   }
 
   // return the node at the specified index
@@ -71,7 +71,7 @@ class LinkedList {
   }
 
   includes(value) {
-    if (this.size === 0) {
+    if (this.length === 0) {
       return false;
     }
     let finger = this.head;
@@ -83,40 +83,40 @@ class LinkedList {
 
   clear() {
     this.head = null;
-    this.size = 0;
+    this.length = 0;
   }
 
   pushHead(value) {
     this.head = new Node(value, this.head);
-    return ++this.size;
+    return ++this.length;
   }
 
   popHead() {
-    if (this.size === 0) {
+    if (this.length === 0) {
       return undefined;
     }
     let oldHead = this.head;
     this.head = this.head.next;
-    --this.size;
+    --this.length;
     return oldHead.value;
   }
 
   pushTail(value) {
     let newTail = new Node(value);
-    if (this.size === 0) {
+    if (this.length === 0) {
       this.head = newTail;
     } else {
-      let tail = this._find(this.size - 1);
+      let tail = this._find(this.length - 1);
       tail.next = newTail;
     }
-    return ++this.size;
+    return ++this.length;
   }
 
   popTail() {
-    if (this.size === 0) {
+    if (this.length === 0) {
       return undefined;
     }
-    let penultimate = this._find(this.size - 2);
+    let penultimate = this._find(this.length - 2);
     let tail;
     if (penultimate) {
       // reset pointer to last element
@@ -127,14 +127,14 @@ class LinkedList {
       tail = this.head;
       this.head = null;
     }
-    --this.size;
+    --this.length;
     return tail.value;
   }
 
   // insert a value so that it *becomes* the node at the specified index,
   // pushing others out of the way
   insert(value, index) {
-    if (index === this.size) {
+    if (index === this.length) {
       return this.pushTail(value);
     }
     if (index === 0) {
@@ -144,7 +144,7 @@ class LinkedList {
       return undefined;
     }
     this._find(index - 1).insertAfter(value);
-    return ++this.size;
+    return ++this.length;
   }
 
   remove(index) {
@@ -157,13 +157,13 @@ class LinkedList {
     let predecessor = this._find(index - 1);
     let nodeToRemove = predecessor.next;
     predecessor.next = nodeToRemove.next;
-    --this.size;
+    --this.length;
     return nodeToRemove.value;
   }
 
   // 'reverse' mutates the list
   reverse() {
-    if (this.size <= 1) {
+    if (this.length <= 1) {
       return this;
     }
     let previous = null;
