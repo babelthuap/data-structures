@@ -195,6 +195,16 @@ class LinkedList {
     return newList;
   }
 
+  // 'sort' uses JavaScript's Array sort and mutates the list
+  sort(compare) {
+    if (!compare) {
+      compare = (a, b) => a > b; // default comparator
+    }
+    let sorted = new LinkedList([...this].sort(compare));
+    this.head = sorted.head;
+    return this;
+  }
+
   // 'reverse' mutates the list
   reverse() {
     if (this.length <= 1) {
