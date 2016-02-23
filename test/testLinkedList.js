@@ -44,7 +44,7 @@ describe('LinkedList', () => {
   });
 
   describe('toArray', () => {
-    it('should return the correct array representation of the linked list', () => {
+    it('should return the correct array representation of the list - OTHER TESTS RELY ON THIS METHOD', () => {
       let arr = [23, 'hello', 'world', {a: 1}, 42, 'caboose'];
       let list = new LinkedList(arr);
       expect(list.toArray()).to.eql(arr);
@@ -126,40 +126,99 @@ describe('LinkedList', () => {
     });
   });
 
+  describe('pushHead', () => {
+    it('should push a value onto the head of the list', () => {
+      let list = new LinkedList();
+      list.pushHead('head 1');
+      expect(list.toArray()).to.eql(['head 1']);
+      list.pushHead('head 2');
+      expect(list.toArray()).to.eql(['head 2', 'head 1']);
+    });
+  });
+
+  describe('popHead', () => {
+    it('should remove the head and return its value', () => {
+      let list = new LinkedList(['a', 'b', 'c']);
+      expect(list.popHead()).to.equal('a');
+      expect(list.toArray()).to.eql(['b', 'c']);
+      expect(list.popHead()).to.equal('b');
+      expect(list.toArray()).to.eql(['c']);
+    });
+  });
+
+  describe('pushTail', () => {
+    it('should push a value onto the tail of the list', () => {
+      let list = new LinkedList();
+      list.pushTail('tail 1');
+      expect(list.toArray()).to.eql(['tail 1']);
+      list.pushTail('tail 2');
+      expect(list.toArray()).to.eql(['tail 1', 'tail 2']);
+    });
+  });
+
+  describe('popTail', () => {
+    it('should remove the tail and return its value', () => {
+      let list = new LinkedList(['a', 'b', 'c']);
+      expect(list.popTail()).to.equal('c');
+      expect(list.toArray()).to.eql(['a', 'b']);
+      expect(list.popTail()).to.equal('b');
+      expect(list.toArray()).to.eql(['a']);
+    });
+  });
+
+  describe('insert', () => {
+    it('should insert a value so that it becomes the node at the specified index', () => {
+      let list = new LinkedList();
+      list.insert('head', 0);
+      list.insert('tail', list.size);
+      list.insert('middleA', 1);
+      list.insert('middleB', 1);
+      expect(list.toArray()).to.eql(['head', 'middleB', 'middleA', 'tail']);
+    });
+  });
+
+  describe('remove', () => {
+    it('should remove a value at the specified index', () => {
+      let list = new LinkedList([0, 1, 2, 3, 4]);
+      list.remove(10);
+      expect(list.toArray()).to.eql([0, 1, 2, 3, 4]);
+      list.remove(0);
+      expect(list.toArray()).to.eql([1, 2, 3, 4]);
+      list.remove(2);
+      expect(list.toArray()).to.eql([1, 2, 4]);
+    });
+  });
+
+  describe('reverse', () => {
+    it('should do nothing to an empty list', () => {
+      let list = new LinkedList();
+      list.reverse();
+      expect(list.head).to.be(null);
+      expect(list.size).to.equal(0);
+    });
+    it('should reverse a list with a nonzero, even number of elements', () => {
+      let list = new LinkedList([0, 1, 2, 3]);
+      list.reverse();
+      expect(list.toArray()).to.eql([3, 2, 1, 0]);
+    });
+    it('should reverse a list with an odd number of elements', () => {
+      let list = new LinkedList([1]); // case n = 1
+      list.reverse();
+      expect(list.toArray()).to.eql([1]);
+      list = new LinkedList([0, 1, 2, 3, 4]); // case n > 1
+      list.reverse();
+      expect(list.toArray()).to.eql([4, 3, 2, 1, 0]);
+    });
+  });
+
+  describe('fromArray', () => {
+    it('should create a list from an array', () => {
+      let list = LinkedList.fromArray([0, 1, 2, 3, 4]);
+      expect(list.toArray()).to.eql([0, 1, 2, 3, 4]);
+    });
+    it('should return undefined when not given an array', () => {
+      expect(LinkedList.fromArray('not an array')).to.be(undefined);
+    });
+  });
+
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
