@@ -189,6 +189,22 @@ describe('LinkedList', () => {
     });
   });
 
+  describe('slice', () => {
+    let arr = [0, 1, 2, 3, 4];
+    let list = new LinkedList(arr);
+    it('should work when given 0 or 1 arguments', () => {
+      expect(list.slice().toArray()).to.eql(arr.slice());
+      expect(list.slice(2).toArray()).to.eql(arr.slice(2));
+    });
+    it('should work the same as Array.prototype.slice', () => {
+      for (let start = -6; start <= 5; ++start) {
+        for (let end = -5; end <= 6; ++end) {
+          expect(list.slice(start, end).toArray()).to.eql(arr.slice(start, end));
+        }
+      }
+    });
+  });  
+
   describe('reverse', () => {
     it('should do nothing to an empty list', () => {
       let list = new LinkedList();

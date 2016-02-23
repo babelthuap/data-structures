@@ -161,6 +161,40 @@ class LinkedList {
     return nodeToRemove.value;
   }
 
+  // return a shallow copy of a portion of the list as a new list
+  slice(start, end) {
+    // return new LinkedList([...this].slice(start, end)); // the cheating (and inefficient) way!
+
+    if (start === undefined) {
+      start = 0;
+      end = this.length;
+    } else if (end === undefined || end > this.length) {
+      end = this.length;
+    }
+    
+    // allow negatives to count from the end of the list
+    start = start < 0 ? Math.max(0, this.length + start) : start;
+    end = end < 0 ? Math.max(0, this.length + end) : end;
+    
+    // build the new list manually rather than with pushTail because that's more efficeint
+    let newList = new LinkedList();
+    let newLength = end - start;
+    if (newLength > 0) {
+      let finger = this._find(start);
+      let prevNewNode = new Node(finger.value);
+      newList.head = prevNewNode;
+      for (let i = 0; i < newLength - 1; ++i) {
+        finger = finger.next;
+        let newNode = new Node(finger.value);
+        prevNewNode.next = newNode;
+        prevNewNode = newNode;
+      }
+      newList.length = newLength;
+    }
+
+    return newList;
+  }
+
   // 'reverse' mutates the list
   reverse() {
     if (this.length <= 1) {
