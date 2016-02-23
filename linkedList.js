@@ -114,7 +114,8 @@ class LinkedList {
     return tail.value;
   }
 
-  // insert a value so that it *becomes* the node at the specified index
+  // insert a value so that it *becomes* the node at the specified index,
+  // pushing others out of the way
   insert(value, index) {
     if (index === this.size) {
       return this.pushTail(value);
@@ -188,7 +189,4 @@ class LinkedList {
 }
 
 
-module.exports = {
-  Node: Node,
-  LinkedList: LinkedList,
-};
+module.exports = LinkedList;
