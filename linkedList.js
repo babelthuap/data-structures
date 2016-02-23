@@ -9,6 +9,7 @@ class Node {
   insertAfter(value) {
     let newNode = new Node(value, this.next);
     this.next = newNode;
+    return newNode;
   }
 }
 
