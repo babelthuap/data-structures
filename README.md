@@ -1,16 +1,16 @@
 # Fun With Basic Data Structures In JavaScript!
 
-### Intro
+## Setup and Testing
 
-To run the tests I've written, you first need to install `mocha` and `expect.js`. You can do this simply by running
+To run the tests I've written, you first need to install `mocha` and `expect.js`. You can do this easily by running
 
 ```bash
 npm run setup
 ```
 
-Then you can simply do `mocha` to automatically run all the tests in the `test` folder.
+Then you can do `mocha` to automatically run all the tests in the `test` folder.
 
-### OOP
+## OOP
 
 I'm making heavy use of the ES2015 `class` syntax to facilitate object-oriented design. This project is cool because I'm exploring many of the fundamentals of OOP.
 
@@ -24,4 +24,4 @@ I'm making heavy use of the ES2015 `class` syntax to facilitate object-oriented 
 
 ***
 
-_This uses a lot of the new ES2015 features. It works on Node v5.6.0, but may not work on older versions._
+_This uses a lot of the new ES2015 features. It works on Node v5.7.0, but may not work on older versions._

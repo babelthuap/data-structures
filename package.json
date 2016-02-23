@@ -4,13 +4,17 @@
   "author": "Nicholas Neumann-Chun",
   "license": "MIT",
   "scripts": {
-    "test": "node test.js"
+    "setup": "npm i && npm i -g mocha",
+    "test": "mocha"
   },
   "engines": {
-    "node": "5.6.0"
+    "node": "5.7.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/babelthuap/data-structures.git"
+  },
+  "dependencies": {
+    "expect.js": "^0.3.1"
   }
 }
