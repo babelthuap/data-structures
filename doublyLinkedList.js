@@ -48,19 +48,19 @@ class DoublyLinkedList extends LinkedList {
     if (this._outOfBounds(index)) {
       return undefined;
     }
+    let finger;
     if (index < this.size / 2) {
-      let finger = this.head;
+      finger = this.head;
       for (let i = 0; i < index; ++i) {
         finger = finger.next;
       }
-      return finger;
     } else {
-      let finger = this.tail;
+      finger = this.tail;
       for (let i = this.size - 1; i > index; --i) {
         finger = finger.previous;
       }
-      return finger;
     }
+    return finger;
   }
 
   clear() {
@@ -114,8 +114,19 @@ class DoublyLinkedList extends LinkedList {
 
   remove(index) {
     let node = this._find(index);
-    node.previous.next = node.next;
-    node.next.previous = node.previous;
+    if (!node) {
+      return undefined;
+    }
+    if (node.previous) {
+      node.previous.next = node.next;
+    } else {
+      this.head = node.next; // node was head
+    }
+    if (node.next) {
+      node.next.previous = node.previous;
+    } else {
+      this.tail = node.previous; // node was tail
+    }
     --this.size;
     return node.value;
   }
@@ -125,7 +136,7 @@ class DoublyLinkedList extends LinkedList {
     if (this.size <= 1) {
       return this;
     }
-    // swap pairs of node values rather than chaning node pointers
+    // swap pairs of node values rather than changing node pointers
     // (this is slightly more efficient)
     function swap(node1, node2) {
       let temp = node1.value;
@@ -134,7 +145,7 @@ class DoublyLinkedList extends LinkedList {
     }
     let leftNode = this.head;
     let rightNode = this.tail;
-    for (let i = 0; i < this.size / 2; i++) {
+    for (let i = 0; i < Math.floor(this.size / 2); i++) {
       swap(leftNode, rightNode);
       leftNode = leftNode.next;
       rightNode = rightNode.previous;
