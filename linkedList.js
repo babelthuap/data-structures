@@ -27,6 +27,22 @@ class LinkedList {
     }
   }
 
+  equals(otherList) {
+    if (this.size !== otherList.size) {
+      return false;
+    }
+    let thisFinger = this.head;
+    let otherFinger = otherList.head;
+    while (thisFinger) {
+      if (thisFinger.value !== otherFinger.value) {
+        return false;
+      }
+      thisFinger = thisFinger.next;
+      otherFinger = otherFinger.next;
+    }
+    return true;
+  }
+
   _outOfBounds(index) {
     return index < 0 || index >= this.size || index === undefined;
   }

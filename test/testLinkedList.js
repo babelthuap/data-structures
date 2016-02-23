@@ -29,6 +29,20 @@ describe('LinkedList', () => {
     });
   });
 
+  describe('equals', () => {
+    it('should return true iff two lists are strictly equal', () => {
+      let list0 = new LinkedList([0, 1, 2, 3]);
+      let list1 = new LinkedList([0, 1, 2, 3]);
+      let list2 = new LinkedList([0, 1, 2]);
+      let list3 = new LinkedList([0, 1, 2, 3, 4]);
+      let list4 = new LinkedList([0, 1, 7, 7]);
+      expect(list0.equals(list1)).to.be(true);
+      expect(list0.equals(list2)).to.be(false);
+      expect(list0.equals(list3)).to.be(false);
+      expect(list0.equals(list4)).to.be(false);
+    });
+  });
+
   describe('toArray', () => {
     it('should return the correct array representation of the linked list', () => {
       let arr = [23, 'hello', 'world', {a: 1}, 42, 'caboose'];
@@ -87,4 +101,65 @@ describe('LinkedList', () => {
     });
   });
 
+  describe('includes', () => {
+    it('should return false if the list is empty', () => {
+      let list = new LinkedList();
+      expect(list.includes('anything')).to.be(false);
+    });
+    it('should return true iff the list has a node with the specified value', () => {
+      let list = new LinkedList(['a', 'b', 'c', 'd', 'e']);
+      expect(list.includes('b')).to.be(true);
+      expect(list.includes('e')).to.be(true);
+      expect(list.includes(null)).to.be(false);
+      expect(list.includes('rando')).to.be(false);
+    });
+  });
+
+  describe('clear', () => {
+    it('should reset the list to be empty', () => {
+      let list = new LinkedList(['a', 'b', 'c']);
+      expect(list.head).to.be.ok();
+      expect(list.size).to.equal(3);
+      list.clear();
+      expect(list.head).to.be(null);
+      expect(list.size).to.equal(0);
+    });
+  });
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
