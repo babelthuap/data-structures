@@ -1,10 +1,17 @@
 'use strict';
 
-const DoublyLinkedList = require('./doublyLinkedList').DoublyLinkedList;
+const DoublyLinkedList = require('./doublyLinkedList');
 
 let list = new DoublyLinkedList(['a', 'b', 'c', 'd', 'e', 'f']);
 console.log(list.toArray());
 console.log('size:', list.size);
+list.insert(47, 4);
+console.log('insert 47 at index 4:', list.toArray());
+console.log('reverse!', list.reverse().toArray());
+list.remove(1);
+console.log('remove from index 1:', list.toArray());
+console.log('reverse!', list.reverse().toArray());
+console.log('\npush/pop time --');
 list.popHead();
 console.log(list.toArray());
 console.log('size:', list.size);
@@ -20,15 +27,13 @@ console.log('size:', list.size);
 list.popTail();
 console.log(list.toArray());
 console.log('size:', list.size);
-list.insert(47, 4);
-console.log(list.toArray());
-console.log('size:', list.size);
+console.log("\ntesting 'get' --");
 for (let i = -1; i <= list.size; i++) {
   console.log(`get ${i}: ${list.get(i)}`);
 }
 
 
-// const LinkedList = require('./linkedList').LinkedList;
+// const LinkedList = require('./linkedList');
 
 // let list = new LinkedList([0, 1, 2, 3, 4]);
 // console.log(list.toArray());

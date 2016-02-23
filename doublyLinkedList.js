@@ -1,13 +1,13 @@
 'use strict';
 
-const Node       = require('./linkedList').Node
-    , LinkedList = require('./linkedList').LinkedList;
+const LinkedList = require('./linkedList');
 
 
-class DoublyLinkedNode extends Node {
+class DoublyLinkedNode {
   constructor(value, previous, next) {
-    super(value, next);
+    this.value = value;
     this.previous = previous || null;
+    this.next = next || null;
   }
 
   insertAfter(value) {
@@ -43,10 +43,6 @@ class DoublyLinkedList extends LinkedList {
     }
   }
 
-  _outOfBounds(index) {
-    return index < 0 || index >= this.size || index === undefined;
-  }
-
   // return the node at the specified index
   _find(index) {
     if (this._outOfBounds(index)) {
@@ -67,28 +63,6 @@ class DoublyLinkedList extends LinkedList {
     }
   }
 
-  // return the *value* of the node at the specified index
-  get(index) {
-    let foundNode = this._find(index);
-    return foundNode ? foundNode.value : undefined;
-  }
-
-  set(value, index) {
-    let foundNode = this._find(index);
-    return foundNode ? (foundNode.value = value) : undefined;
-  }
-
-  includes(value) {
-    if (this.size === 0) {
-      return false;
-    }
-    let finger = this.head;
-    while (finger && finger.value !== value) {
-      finger = finger.next;
-    }
-    return !!finger;
-  }
-
   clear() {
     this.head = null;
     this.tail = null;
@@ -96,13 +70,12 @@ class DoublyLinkedList extends LinkedList {
   }
 
   pushHead(value) {
-    let oldHead = this.head;
-    let newHead = new DoublyLinkedNode(value, null, this.head);
-    this.head = newHead;
     if (this.size === 0) {
-      this.tail = newHead;
+      this.head = new DoublyLinkedNode(value);
+      this.tail = this.head;
     } else {
-      oldHead.previous = this.head;
+      let newHead = this.head.insertBefore(value);
+      this.head = newHead;
     }
     return ++this.size;
   }
@@ -119,13 +92,11 @@ class DoublyLinkedList extends LinkedList {
   }
 
   pushTail(value) {
-    let oldTail = this.tail;
-    let newTail = new DoublyLinkedNode(value, this.tail, null);
-    this.tail = newTail;
     if (this.size === 0) {
-      this.head = newTail;
+      return this.pushHead(value);
     } else {
-      oldTail.next = newTail;
+      let newTail = this.tail.insertAfter(value);
+      this.tail = newTail;
     }
     return ++this.size;
   }
@@ -141,38 +112,12 @@ class DoublyLinkedList extends LinkedList {
     return oldTail.value;
   }
 
-  // insert a value so that it *becomes* the node at the specified index,
-  // pushing others out of the way
-  insert(value, index) {
-    if (index === this.size) {
-      return this.pushTail(value);
-    }
-    if (index === 0) {
-      return this.pushHead(value);
-    }
-    if (this._outOfBounds(index)) {
-      return undefined;
-    }
-    this._find(index - 1).insertAfter(value);
-    return ++this.size;
-  }
-
-
-  // -------------- //
-  // NOT COMPLETED: //
-
   remove(index) {
-    if (index === 0) {
-      return this.popHead();
-    }
-    if (this._outOfBounds(index)) {
-      return undefined;
-    }
-    let predecessor = this._find(index - 1);
-    let nodeToRemove = predecessor.next;
-    predecessor.next = nodeToRemove.next;
+    let node = this._find(index);
+    node.previous.next = node.next;
+    node.next.previous = node.previous;
     --this.size;
-    return nodeToRemove.value;
+    return node.value;
   }
 
   // 'reverse' mutates the list
@@ -180,15 +125,20 @@ class DoublyLinkedList extends LinkedList {
     if (this.size <= 1) {
       return this;
     }
-    let previous = null;
-    let finger = this.head;
-    while (finger) {
-      let next = finger.next;
-      finger.next = previous; // switch pointers
-      previous = finger;
-      finger = next;
+    // swap pairs of node values rather than chaning node pointers
+    // (this is slightly more efficient)
+    function swap(node1, node2) {
+      let temp = node1.value;
+      node1.value = node2.value;
+      node2.value = temp;
     }
-    this.head = previous;
+    let leftNode = this.head;
+    let rightNode = this.tail;
+    for (let i = 0; i < this.size / 2; i++) {
+      swap(leftNode, rightNode);
+      leftNode = leftNode.next;
+      rightNode = rightNode.previous;
+    }
     return this;
   }
 
@@ -198,29 +148,10 @@ class DoublyLinkedList extends LinkedList {
       return undefined;
     }
     let list = new DoublyLinkedList();
-    // build list backwards
-    for (let i = arr.length - 1; i >= 0; --i) {
-      list.pushHead(arr[i]);
-    }
+    arr.forEach(element => list.pushTail(element));
     return list;
-  }
-
-  toArray() {
-    return [...this];
-  }
-
-  // make the DoublyLinkedList class iterable
-  *[Symbol.iterator]() {
-    let finger = this.head;
-    while (finger) {
-      yield finger.value;
-      finger = finger.next;
-    }
   }
 }
 
 
-module.exports = {
-  DoublyLinkedNode: DoublyLinkedNode,
-  DoublyLinkedList: DoublyLinkedList,
-};
+module.exports = DoublyLinkedList;
