@@ -40,24 +40,19 @@ I'm making heavy use of the ES2015 `class` syntax to facilitate object-oriented 
 
 #### Classes!
 
-My first real programming language was Java. Needless to say, it was a shock transferring to JavaScript and losing things like static types and class inheritance. I've learned to like JavaScript's looseness, but I still miss the straightforward organization provided by classes. I understand that the ES2015 `class` syntax in JavaScript does *not* make it a classical language. Everything stills rests on prototypal inheritance. However, I find it much easier to read the new `class` stuff. The one thing missing is a way to make true private fields. There are certainly some workarounds ([see here](http://www.2ality.com/2016/01/private-data-classes.html), for example), but these make the code less readable; hence, I decided to embrace JavaScript's looseness once again.
+My first real programming language was Java. Needless to say, it was a shock transferring to JavaScript and losing things like static types and class inheritance. I've learned to like JavaScript's looseness, but I still miss the straightforward organization provided by classes. I understand that the ES2015 `class` syntax in JavaScript does *not* make it a classical language. Everything stills rests on prototypal inheritance. However, I find it much easier to read the new `class` stuff.
 
 #### Encapsulation
 
-
-
+The one thing missing from ES2015 `class`es is a way to make true private fields. There are certainly some workarounds ([see here](http://www.2ality.com/2016/01/private-data-classes.html), for example), but these make the code less readable; hence, I decided to embrace JavaScript's looseness once again.
 
 #### Inheritance
 
-
+When I typed `class DoublyLinkedList extends LinkedList`, shivers ran down my back. I swear.
 
 #### Polymorphism
 
-
-
-#### Open recursion
-
-
+This is what `extends` does for you, really. I think of it more with the term "delegation," but no matter. For instance, I can call `toArray()` on a `DoublyLinkedList` even though that method isn't defined directly on a `DoublyLinkedList`. Because it "`extends`" a `LinkedList`, it knows to fall back to the `toArray` method on `LinkedList`.
 
 ***
 
