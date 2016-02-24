@@ -2,7 +2,7 @@
 
 const expect = require('expect.js');
 
-const DoublyLinkedList = require('../DoublyLinkedList');
+const DoublyLinkedList = require('../lists/DoublyLinkedList');
 
 describe('DoublyLinkedList', () => {
 
