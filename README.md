@@ -14,9 +14,9 @@ Then you can do `mocha` to automatically run all the tests in the `test` folder.
 
 There's no difference in using `LinkedList`s and `DoublyLinkedList`s. The difference is that `DoublyLinkedList`s use slightly more memory but do some operations faster. These are the "public" methods that work on either:
 
-| Method | Description |
-| --- | --- |
-| `new LinkedList([array])` | Creates a new list, empty by default, but can be initialized with an array. |
+| Method                  | Description |
+| ----------------------- | ----------- |
+| `let list = new LinkedList([array])` | Creates a new list, empty by default, but can be initialized with an array. |
 | `list.equals(otherList)` | Returns `true` if all matching nodes in the two lists are strictly equal, otherwise returns `false`. |
 | `list.get(index)` | Return the value at the specified 0-based index. |
 | `list.set(value, index)` | Overwrite the value at the specified index, returning the new value. |
@@ -29,6 +29,10 @@ There's no difference in using `LinkedList`s and `DoublyLinkedList`s. The differ
 | `list.insert(value, index)` | Insert a value so that it *becomes* the node at the specified index, pushing others out of the way. |
 | `list.remove(index)` | Remove the node at the specified index. |
 | `list.slice([start[, end]])` | Returns a shallow copy of a portion of the list as a new list. Works the same as [`Array.prototype.slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice). |
+| `list.sort([comparator])` | Sorts (and mutates) the list, with an optional comparator function. |
+| `list.reverse()` | Reverses (and mutates) the list. |
+| `list.toArray()` | Returns the array representation of the list. |
+| `LinkedList.fromArray(array)` | Returns a new list with values taken from the input array. |
 
 ## Object Oriented Features
 
