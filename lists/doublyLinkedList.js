@@ -172,9 +172,6 @@ class DoublyLinkedList extends LinkedList {
 
   // 'reverse' mutates the list
   reverse() {
-    if (this.length <= 1) {
-      return this;
-    }
     // swap pairs of node values rather than changing node pointers
     // (this is slightly more efficient)
     function swap(node1, node2) {

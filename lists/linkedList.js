@@ -207,9 +207,6 @@ class LinkedList {
 
   // 'reverse' mutates the list
   reverse() {
-    if (this.length <= 1) {
-      return this;
-    }
     let previous = null;
     let finger = this.head;
     while (finger) {
