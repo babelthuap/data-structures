@@ -17,7 +17,7 @@ There's no difference in using `LinkedList`s and `DoublyLinkedList`s. The differ
 | Method | Description |
 | --- | --- |
 | `new LinkedList([array])` | Creates a new list, empty by default, but can be initialized with an array. |
-| `*list*.equals(otherList)` | Returns true if all matching nodes in the two lists are strictly equal. |
+| *`list`*`.equals(otherList)` | Returns true if all matching nodes in the two lists are strictly equal. |
 
 
 ## Object Oriented Features
