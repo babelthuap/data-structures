@@ -2,37 +2,35 @@
 
 const LinkedList = require('../lists').LinkedList;
 
-let _data = new WeakMap();
-
 class Stack {
   constructor() {
-    _data.set(this, new LinkedList());
+    this.clear();
   }
 
   size() {
-    return _data.get(this).length;
+    return this._data.length;
   }
 
   clear() {
-    _data.set(this, new LinkedList());
+    this._data = new LinkedList();
     return this;
   }
 
   push(value) {
-    return _data.get(this).pushHead(value);
+    return this._data.pushHead(value);
   }
 
   pop() {
-    return _data.get(this).popHead();
+    return this._data.popHead();
   }
 
   // top value is returned but not removed
   peek() {
-    return _data.get(this).get(0);
+    return this._data.get(0);
   }
 
   reverse() {
-    _data.get(this).reverse();
+    this._data.reverse();
     return this;
   }
 }
