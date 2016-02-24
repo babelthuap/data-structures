@@ -48,4 +48,4 @@ I'm making heavy use of the ES2015 `class` syntax to facilitate object-oriented 
 
 ***
 
-_This project uses a lot of the new ES2015 features. It works on Node v5.7.0, but may not work on older versions._
+*This project uses a lot of the new ES2015 features. It works on Node v5.7.0, but may not work on older versions. To update your Node version, do `nvm install v5.7` and then `nvm alias default 5.7`.*
