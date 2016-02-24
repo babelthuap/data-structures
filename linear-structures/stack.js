@@ -1,47 +1,38 @@
 'use strict';
 
+const LinkedList = require('../lists').LinkedList;
+
 let _data = new WeakMap();
-let _size = new WeakMap();
 
 class Stack {
   constructor() {
-    _data.set(this, []);
-    _size.set(this, 0);
+    _data.set(this, new LinkedList());
   }
 
   size() {
-    return _size.get(this);
+    return _data.get(this).length;
   }
 
   clear() {
-    _data.set(this, []);
-    _size.set(this, 0);
+    _data.set(this, new LinkedList());
     return this;
   }
 
   push(value) {
-    let size = _size.get(this);
-    _size.set(this, size + 1);
-    return _data.get(this).push(value);
+    return _data.get(this).pushHead(value);
   }
 
   pop() {
-    let size = _size.get(this);
-    if (size > 0) {
-      _size.set(this, size - 1);
-    } 
-    return _data.get(this).pop();
+    return _data.get(this).popHead();
   }
 
   // top value is returned but not removed
   peek() {
-    let data = _data.get(this);
-    return data[data.length - 1];
+    return _data.get(this).get(0);
   }
 
   reverse() {
-    let data = _data.get(this);
-    _data.set(this, data.reverse());
+    _data.get(this).reverse();
     return this;
   }
 }

@@ -1,16 +1,39 @@
 'use strict';
 
+const DoublyLinkedList = require('../lists').DoublyLinkedList;
+
 let _data = new WeakMap();
-let _size = new WeakMap();
 
 class Queue {
   constructor() {
-    _data.set(this, []);
-    _size.set(this, 0);
+    _data.set(this, new DoublyLinkedList());
   }
 
   size() {
-    return _size.get(this);
+    return _data.get(this).length;
+  }
+
+  clear() {
+    _data.set(this, new DoublyLinkedList());
+    return this;
+  }
+
+  push(value) {
+    return _data.get(this).pushTail(value);
+  }
+
+  pop() {
+    return _data.get(this).popHead();
+  }
+
+  // top value is returned but not removed
+  peek() {
+    return _data.get(this).get(0);
+  }
+
+  reverse() {
+    _data.get(this).reverse();
+    return this;
   }
 }
 
