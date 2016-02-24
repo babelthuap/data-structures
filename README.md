@@ -17,20 +17,20 @@ There's no difference in using `LinkedList`s and `DoublyLinkedList`s. The differ
 | Method                               | Description |
 | ------------------------------------ | ----------- |
 | `let list = new LinkedList([array])` | Creates a new list, empty by default, but can be initialized with an array. |
+| `list.clear()`                       | Resets the list to be empty. |
 | `list.equals(otherList)`             | Returns `true` if all matching nodes in the two lists are strictly equal, otherwise returns `false`. |
 | `list.get(index)`                    | Return the value at the specified 0-based index. |
-| `list.set(value, index)`             | Overwrite the value at the specified index, returning the new value. |
 | `list.includes(value)`               | Determines whether the list includes a certain value, returning `true` or `false` as appropriate. |
-| `list.clear()`                       | Resets the list to be empty. |
-| `list.pushHead(value)`               | Adds a new node at the head of the list with the specified value. |
-| `list.popHead()`                     | Removes the head and returns its value. |
-| `list.pushTail(value)`               | Adds a new node at the tail of the list with the specified value. |
-| `list.popTail()`                     | Removes the tail and returns its value. |
 | `list.insert(value, index)`          | Insert a value so that it *becomes* the node at the specified index, pushing others out of the way. |
+| `list.popHead()`                     | Removes the head and returns its value. |
+| `list.popTail()`                     | Removes the tail and returns its value. |
+| `list.pushHead(value)`               | Adds a new node at the head of the list with the specified value. |
+| `list.pushTail(value)`               | Adds a new node at the tail of the list with the specified value. |
 | `list.remove(index)`                 | Remove the node at the specified index. |
+| `list.reverse()`                     | Reverses (and mutates) the list. |
+| `list.set(value, index)`             | Overwrite the value at the specified index, returning the new value. |
 | `list.slice([start[, end]])`         | Returns a shallow copy of a portion of the list as a new list. Works the same as [`Array.prototype.slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice). |
 | `list.sort([comparator])`            | Sorts (and mutates) the list, with an optional comparator function. |
-| `list.reverse()`                     | Reverses (and mutates) the list. |
 | `list.toArray()`                     | Returns the array representation of the list. |
 | `LinkedList.fromArray(array)`        | Returns a new list with values taken from the input array. |
 
