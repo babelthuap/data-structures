@@ -22,6 +22,7 @@ There's no difference in using `LinkedList`s and `DoublyLinkedList`s. The differ
 | `list.get(index)`                    | Return the value at the specified 0-based index. |
 | `list.includes(value)`               | Determines whether the list includes a certain value, returning `true` or `false` as appropriate. |
 | `list.insert(value, index)`          | Insert a value so that it *becomes* the node at the specified index, pushing others out of the way. |
+| `list.length`                        | Returns the length of the list. |
 | `list.popHead()`                     | Removes the head and returns its value. |
 | `list.popTail()`                     | Removes the tail and returns its value. |
 | `list.pushHead(value)`               | Adds a new node at the head of the list with the specified value. |
@@ -44,7 +45,7 @@ My first real programming language was Java. Needless to say, it was a shock tra
 
 #### Encapsulation
 
-The one thing missing from ES2015 `class`es is a way to make true private fields. There are certainly some workarounds ([see here](http://www.2ality.com/2016/01/private-data-classes.html), for example), but these make the code less readable; hence, I decided to embrace JavaScript's looseness once again.
+The one thing missing from ES2015 `class`es is a way to make true private fields. There are certainly some workarounds ([see here](http://www.2ality.com/2016/01/private-data-classes.html), for example), but these make the code less readable; hence, I decided to embrace JavaScript's looseness for my linked lists.
 
 #### Inheritance
 
