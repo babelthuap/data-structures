@@ -36,15 +36,28 @@ There's no difference in using `LinkedList`s and `DoublyLinkedList`s. The differ
 
 ## Object Oriented Features
 
-I'm making heavy use of the ES2015 `class` syntax to facilitate object-oriented design. This project is cool because I'm exploring many of the fundamentals of OOP.
+I'm making heavy use of the ES2015 `class` syntax to facilitate object-oriented design. This project is fun because I'm using some brand-new features of JavaScript to explore many of the fundamentals of object-oriented programming.
+
+#### Classes!
+
+My first real programming language was Java. Needless to say, it was a shock transferring to JavaScript and losing things like static types and class inheritance. I've learned to like JavaScript's looseness, but I still miss the straightforward organization provided by classes. I understand that the ES2015 `class` syntax in JavaScript does *not* make it a classical language. Everything stills rests on prototypal inheritance. However, I find it much easier to read the new `class` stuff. The one thing missing is a way to make true private fields. There are certainly some workarounds ([see here](http://www.2ality.com/2016/01/private-data-classes.html), for example), but these make the code less readable; hence, I decided to embrace JavaScript's looseness once again.
 
 #### Encapsulation
 
+
+
+
 #### Inheritance
+
+
 
 #### Polymorphism
 
+
+
 #### Open recursion
+
+
 
 ***
 
