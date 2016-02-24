@@ -86,7 +86,9 @@ class DoublyLinkedList extends LinkedList {
     }
     let oldHead = this.head;
     this.head = this.head.next;
-    this.head.previous = null;
+    if (this.head) {
+      this.head.previous = null;
+    }
     --this.length;
     return oldHead.value;
   }
