@@ -8,7 +8,7 @@ To start, clone this repo down and `cd` into the project directory. To run the t
 npm run setup
 ```
 
-Then you can do `mocha` (from the project directory) to automatically run all the tests in the `test` folder.
+Now you can `cd` into one of the directories (e.g. "lists") and do `mocha`. This will automatically run all the tests in that directory's `test` folder. Alternatively, you can do `npm test` from the main project folder to run all available tests.
 
 ## API For `LinkedList` and `DoublyLinkedList`
 

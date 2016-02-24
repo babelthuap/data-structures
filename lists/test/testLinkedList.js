@@ -2,7 +2,7 @@
 
 const expect = require('expect.js');
 
-const LinkedList = require('../lists/linkedList');
+const LinkedList = require('../linkedList');
 
 describe('LinkedList', () => {
 

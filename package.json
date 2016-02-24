@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "setup": "npm i && npm i -g mocha",
-    "test": "mocha"
+    "test": "mocha linear-structures/test/ lists/test/"
   },
   "engines": {
     "node": "5.7.0"
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/babelthuap/data-structures.git"
   },
-  "dependencies": {
-    "expect.js": "^0.3.1"
+  "devDependencies": {
+    "expect.js": "*"
   }
 }
