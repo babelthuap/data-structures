@@ -220,7 +220,25 @@ describe('DoublyLinkedList', () => {
         }
       }
     });
-  });  
+  });
+
+  describe('sort', () => {
+    it('should sort strings', () => {
+      let list = new DoublyLinkedList(['hello', 'my', 'gifted', 'azure', 'pudding', '!']);
+      list.sort();
+      expect(list.toArray()).to.eql(["!", "azure", "gifted", "hello", "my", "pudding"]);
+    });
+    it('should sort numbers', () => {
+      let list = new DoublyLinkedList([42, -23, 0, 1, 7, 102, 1, 9, -5]);
+      list.sort();
+      expect(list.toArray()).to.eql([-23, -5, 0, 1, 1, 7, 9, 42, 102]);
+    });
+    it('should sort objects given a comparator function', () => {
+      let list = new DoublyLinkedList([{n: 0}, {n: -10}, {n: 102}, {n: 20}, {n: 2}]);
+      list.sort((a, b) => a.n > b.n);
+      expect(list.toArray()).to.eql([{n: -10}, {n: 0}, {n: 2}, {n: 20}, {n: 102}]);
+    });
+  });
 
   describe('reverse', () => {
     it('should do nothing to an empty list', () => {
