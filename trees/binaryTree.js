@@ -26,7 +26,7 @@ class BinaryTree {
   }
 
   isRightChild() {
-    return !_isLeftChild.get(this) && !!_parent.get(this);
+    return !this.isLeftChild() && !!_parent.get(this);
   }
 
   parent() {
@@ -36,8 +36,14 @@ class BinaryTree {
   setParent(parent, leftOrRight) {
     if (leftOrRight === 'left') {
       _isLeftChild.set(this, true);
-    } else {
+      parent.setLeft(this);
+    } else if (leftOrRight === 'right') {
       _isLeftChild.set(this, false);
+      parent.setRight(this);
+    } else if (leftOrRight === undefined) {
+      // this is the setParent as used in setLeft and setRight
+    } else {
+      throw new Error(`Please set child as either 'left' or 'right', not '${leftOrRight}'`);
     }
     _parent.set(this, parent);
     return this;
@@ -57,7 +63,12 @@ class BinaryTree {
   }
 
   setLeft(otherTree) {
+    if (_left.get(this)) {
+      _left.get(this).setParent(null);
+    }
     _left.set(this, otherTree);
+    otherTree.setParent(this);
+    return otherTree;
   }
 
   right() {
@@ -65,24 +76,28 @@ class BinaryTree {
   }
 
   setRight(otherTree) {
+    if (_right.get(this)) {
+      _right.get(this).setParent(null);
+    }
     _right.set(this, otherTree);
+    otherTree.setParent(this);
+    return otherTree;
   }
 
   includes(value) {
     if (_value.get(this) === value) {
       return true;
     }
-    let left = _left.get(this);
+    let left = this.left();
     if (left && left.includes(value)) {
       return true
     }
-    let right = _right.get(this);
+    let right = this.right();
     if (right && right.includes(value)) {
       return true
     }
     return false;
   }
-
 }
 
 module.exports = BinaryTree;
