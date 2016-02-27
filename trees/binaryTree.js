@@ -1,5 +1,7 @@
 'use strict';
 
+const Stack = require('../linear').Stack;
+
 let _parent = new WeakMap();
 let _isLeftChild = new WeakMap();
 let _value = new WeakMap();
@@ -97,6 +99,24 @@ class BinaryTree {
       return true
     }
     return false;
+  }
+
+  // preorder traversal
+  *[Symbol.iterator]() {
+    let finger = this;
+    let todo = new Stack();
+    todo.push(this);
+    while (todo.size() > 0) {
+      let old = todo.pop();
+      let result = old.value();
+      if (old.right()) {
+        todo.push(old.right());
+      }
+      if (old.left()) {
+        todo.push(old.left());
+      }
+      yield result;
+    }
   }
 }
 
