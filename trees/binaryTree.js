@@ -6,17 +6,19 @@ let _value = new WeakMap();
 let _left = new WeakMap();
 let _right = new WeakMap();
 
-let EmptyTree = {
-  isEmpty: true
-};
-
 class BinaryTree {
   constructor(value, left, right) {
     _parent.set(this, null);
     _isLeftChild.set(this, false);
     _value.set(this, value);
-    _left.set(this, left || EmptyTree);
-    _right.set(this, right || EmptyTree);
+    _left.set(this, left || null);
+    if (left) {
+      left.setParent(this, 'left');
+    }
+    _right.set(this, right || null);
+    if (right) {
+      right.setParent(this, 'right');
+    }
   }
 
   isLeftChild() {
@@ -24,7 +26,7 @@ class BinaryTree {
   }
 
   isRightChild() {
-    return !_isLeftChild.get(this) && _parent.get(this);
+    return !_isLeftChild.get(this) && !!_parent.get(this);
   }
 
   parent() {
@@ -64,6 +66,21 @@ class BinaryTree {
 
   setRight(otherTree) {
     _right.set(this, otherTree);
+  }
+
+  includes(value) {
+    if (_value.get(this) === value) {
+      return true;
+    }
+    let left = _left.get(this);
+    if (left && left.includes(value)) {
+      return true
+    }
+    let right = _right.get(this);
+    if (right && right.includes(value)) {
+      return true
+    }
+    return false;
   }
 
 }
