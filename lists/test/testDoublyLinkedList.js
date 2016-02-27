@@ -161,6 +161,10 @@ describe('DoublyLinkedList', () => {
       expect(list.popHead()).to.equal('b');
       expect(list.toArray()).to.eql(['c']);
     });
+    it('should return undefined when the list is empty', () => {
+      let list = new DoublyLinkedList();
+      expect(list.popHead()).to.be(undefined);
+    });
   });
 
   describe('pushTail', () => {
@@ -180,6 +184,10 @@ describe('DoublyLinkedList', () => {
       expect(list.toArray()).to.eql(['a', 'b']);
       expect(list.popTail()).to.equal('b');
       expect(list.toArray()).to.eql(['a']);
+    });
+    it('should return undefined when the list is empty', () => {
+      let list = new DoublyLinkedList();
+      expect(list.popHead()).to.be(undefined);
     });
   });
 
