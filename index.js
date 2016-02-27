@@ -1,11 +1,11 @@
 'use strict';
 
-const linearStructures = require('./linear-structures')
-    , lists            = require('./lists');
+const linear = require('./linear')
+    , lists  = require('./lists');
 
 module.exports = {
-  Queue: linearStructures.Queue,
-  Stack: linearStructures.Stack,
+  Queue: linear.Queue,
+  Stack: linear.Stack,
   DoublyLinkedList: lists.DoublyLinkedList,
   LinkedList: lists.LinkedList,
 };
