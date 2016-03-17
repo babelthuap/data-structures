@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "setup": "npm i && npm i -g mocha",
-    "test": "mocha linear/test/ lists/test/ trees/test/"
+    "test": "mocha linear/test/ lists/test/ trees/test/ dictionaries/test/"
   },
   "engines": {
     "node": "5.7.0"
