@@ -55,14 +55,15 @@ class Heap {
       return;
     }
     let right = this._rightChild(i);
-    if (this._compare(this._data[left], this._data[right]) > 0) {
+    if (right < this._data.length && this._compare(this._data[left], this._data[right]) > 0) {
+      // the right child exists and is the smaller child
       if (this._compare(this._data[right], this._data[i]) < 0) {
         // swap with right child
         this._swap(i, right);
         this._percolateDown(right);
       }
     } else {
-      // right child must be larger or undefined, so deal with left
+      // the right child must be larger or undefined, so deal with left
       if (this._compare(this._data[left], this._data[i]) < 0) {
         // swap with left child
         this._swap(i, left);
