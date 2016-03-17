@@ -1,8 +1,13 @@
 'use strict';
 
 class Heap {
-  constructor() {
+  constructor(compare) {
     this._data = [];
+    if (compare) {
+      this._compare = compare;  
+    } else {
+      this._compare = (a, b) => a - b; // default compare function for integers
+    }
   }
 
   size() {
@@ -34,7 +39,7 @@ class Heap {
       return;
     }
     let parent = this._parent(i);
-    if (this._data[parent] <= this._data[i]) {
+    if (this._compare(this._data[parent], this._data[i]) <= 0) {
       return;
     } else {
       this._swap(i, parent);
@@ -50,15 +55,15 @@ class Heap {
       return;
     }
     let right = this._rightChild(i);
-    if (this._data[left] > this._data[right]) {
-      if (this._data[right] < this._data[i]) {
+    if (this._compare(this._data[left], this._data[right]) > 0) {
+      if (this._compare(this._data[right], this._data[i]) < 0) {
         // swap with right child
         this._swap(i, right);
         this._percolateDown(right);
       }
     } else {
-      // right child must be larger or undefined
-      if (this._data[left] < this._data[i]) {
+      // right child must be larger or undefined, so deal with left
+      if (this._compare(this._data[left], this._data[i]) < 0) {
         // swap with left child
         this._swap(i, left);
         this._percolateDown(left);
