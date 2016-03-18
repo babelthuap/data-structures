@@ -4,7 +4,7 @@ const expect = require('expect.js')
     , _      = require('lodash');
 
 const bubblesort = require('../bubblesort')
-    , insertionsort = require('../insertionsort')
+    , selectionsort = require('../selectionsort')
     , mergesort  = require('../mergesort')
     , quicksort  = require('../quicksort');
 
@@ -41,8 +41,8 @@ describe('sorting algorithms', () => {
     testSorting(bubblesort);
   });
 
-  describe('insertionsort', () => {
-    testSorting(insertionsort);
+  describe('selectionsort', () => {
+    testSorting(selectionsort);
   });
 
   describe('mergesort', () => {

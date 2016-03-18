@@ -1,13 +1,13 @@
 'use strict';
 
 const bubblesort    = require('./bubblesort')
-    , insertionsort = require('./insertionsort')
+    , selectionsort = require('./selectionsort')
     , mergesort     = require('./mergesort')
     , quicksort     = require('./quicksort');
 
 module.exports = {
   bubblesort: bubblesort,
-  insertionsort: insertionsort,
+  selectionsort: selectionsort,
   mergesort: mergesort,
   quicksort: quicksort,
 };

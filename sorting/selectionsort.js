@@ -1,6 +1,6 @@
 'use strict';
 
-function insertionsort(arr, compare) {
+function selectionsort(arr, compare) {
   if (!compare) {
     compare = (a, b) => a - b;
   }
@@ -22,4 +22,4 @@ function insertionsort(arr, compare) {
   return arr;
 }
 
-module.exports = insertionsort;
+module.exports = selectionsort;
