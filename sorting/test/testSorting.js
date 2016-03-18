@@ -1,10 +1,15 @@
 'use strict';
 
-const expect = require('expect.js');
+const expect = require('expect.js')
+    , _      = require('lodash');
 
-const quicksort  = require('../quicksort')
+const bubblesort = require('../bubblesort')
+    , insertionsort = require('../insertionsort')
     , mergesort  = require('../mergesort')
-    , bubblesort = require('../bubblesort');
+    , quicksort  = require('../quicksort');
+
+let ordered = [...Array(100).keys()];
+let shuffled = _.shuffle(ordered);
 
 function testSorting(algorithm) {
   it('should sort', () => {
@@ -16,6 +21,7 @@ function testSorting(algorithm) {
     expect(algorithm([3, 2, 1])).to.eql([1, 2, 3]);
     let arr = [59, 23, 30, 34, 19, -2, 30, 1, -12, 42];
     expect(algorithm(arr)).to.eql([-12, -2, 1, 19, 23, 30, 30, 34, 42, 59]);
+    expect(algorithm(shuffled)).to.eql(ordered);
   });
   it('should reverse sort', () => {
     expect(algorithm([1, 2, 3], (a, b) => b - a)).to.eql([3, 2, 1]);
@@ -31,16 +37,20 @@ function testSorting(algorithm) {
 
 describe('sorting algorithms', () => {
 
-  describe('quicksort', () => {
-    testSorting(quicksort);
+  describe('bubblesort', () => {
+    testSorting(bubblesort);
+  });
+
+  describe('insertionsort', () => {
+    testSorting(insertionsort);
   });
 
   describe('mergesort', () => {
     testSorting(mergesort);
   });
 
-  describe('bubblesort', () => {
-    testSorting(bubblesort);
+  describe('quicksort', () => {
+    testSorting(quicksort);
   });
 
 });
