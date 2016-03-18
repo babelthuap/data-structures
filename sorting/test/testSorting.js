@@ -2,8 +2,9 @@
 
 const expect = require('expect.js');
 
-const quicksort = require('../quicksort');
-const mergesort = require('../mergesort');
+const quicksort  = require('../quicksort')
+    , mergesort  = require('../mergesort')
+    , bubblesort = require('../bubblesort');
 
 function testSorting(algorithm) {
   it('should sort', () => {
@@ -36,6 +37,10 @@ describe('sorting algorithms', () => {
 
   describe('mergesort', () => {
     testSorting(mergesort);
+  });
+
+  describe('bubblesort', () => {
+    testSorting(bubblesort);
   });
 
 });
